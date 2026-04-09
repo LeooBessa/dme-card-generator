@@ -54,7 +54,7 @@
   .veredito-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
   .vd-opt { border: 1px solid rgba(192,132,252,0.25); border-radius: 6px; padding: 7px 6px; cursor: pointer; text-align: center; font-size: 9px; font-weight: 700; color: rgba(220,200,255,0.7); text-transform: uppercase; transition: all 0.15s; background: rgba(255,255,255,0.05); }
   .vd-opt:hover { border-color: rgba(168,85,247,0.6); color: #e9d5ff; }
-  .vd-opt.forragem.sel { border-color: #f87171; background: rgba(248,113,113,0.15); color: #f87171; }
+  .vd-opt.forragem.sel { border-color: #92400e; background: rgba(146,64,14,0.2); color: #b45309; }
   .vd-opt.bagre.sel { border-color: #f87171; background: rgba(248,113,113,0.15); color: #f87171; }
   .vd-opt.comum.sel { border-color: #fbbf24; background: rgba(251,191,36,0.15); color: #fbbf24; }
   .vd-opt.agrada.sel { border-color: #34d399; background: rgba(52,211,153,0.15); color: #34d399; }
@@ -101,14 +101,14 @@
   .sec-title { font-size: 16px; font-weight: 700; letter-spacing: 3px; color: #e9d5ff; text-transform: uppercase; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
   .sec-title::before { content: ''; display: inline-block; width: 2.5px; height: 8px; background: #a855f7; border-radius: 2px; }
   .stat-row { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
-  .stat-name { font-size: 15px; color: rgba(192,132,252,0.5); text-transform: uppercase; letter-spacing: 1px; width: 110px; flex-shrink: 0; white-space: nowrap; }
+  .stat-name { font-size: 13px; color: rgba(192,132,252,0.5); text-transform: uppercase; letter-spacing: 1px; width: 120px; flex-shrink: 0; white-space: nowrap; }
   .stat-track { flex: 1; height: 1.5px; background: rgba(192,132,252,0.1); border-radius: 1px; overflow: hidden; }
   .stat-fill { height: 100%; background: #a855f7; width: 0%; border-radius: 1px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
   .stat-num { font-size: 13px; font-weight: 700; color: #e9d5ff; min-width: 22px; text-align: right; }
   .sdivider { height: 0.5px; background: rgba(192,132,252,0.1); margin: 7px 0; }
   .funcoes-sec { opacity: 0; transform: translateY(8px); transition: opacity 0.5s, transform 0.5s; }
   .funcoes-sec.in { opacity: 1; transform: translateY(0); }
-  .fi { font-size: 22px; color: rgba(192,132,252,0.55); margin-bottom: 3px; white-space: nowrap; }
+  .fi { font-size: 16px; color: rgba(192,132,252,0.55); margin-bottom: 3px; white-space: nowrap; }
   .fi span { color: #c084fc; font-weight: 700; }
   .act-screen { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
   .act-screen.in { opacity: 1; }
@@ -309,7 +309,7 @@
           <optgroup label="Ritmo"><option value="Aceleração">Aceleração</option><option value="Pique">Pique</option></optgroup>
           <optgroup label="Finalização"><option value="Pos. no Ataque">Pos. no Ataque</option><option value="Finalização">Finalização</option><option value="Força do Chute">Força do Chute</option><option value="Voleio">Voleio</option><option value="Pênalti">Pênalti</option><option value="Chute de Longe">Chute de Longe</option></optgroup>
           <optgroup label="Passe"><option value="Visão">Visão</option><option value="Cruzamento">Cruzamento</option><option value="Bola Parada">Bola Parada</option><option value="Passe Curto">Passe Curto</option><option value="Passe Longo">Passe Longo</option><option value="Curva">Curva</option></optgroup>
-          <optgroup label="Drible"><option value="Agilidade">Agilidade</option><option value="Equilíbrio">Equilíbrio</option><option value="Reação">Reação</option><option value="Controle de Bola">Controle de Bola</option><option value="Drible">Drible</option><option value="Frieza">Frieza</option></optgroup>
+          <optgroup label="Drible"><option value="Agilidade">Agilidade</option><option value="Equilíbrio">Equilíbrio</option><option value="Reação">Reação</option><option value="Controle de Bola">Controle de Bola</option><option value="Condução">Condução</option><option value="Frieza">Frieza</option></optgroup>
           <optgroup label="Defesa"><option value="Interceptação">Interceptação</option><option value="Cabeceio">Cabeceio</option><option value="Noção Defensiva">Noção Defensiva</option><option value="Dividida em Pé">Dividida em Pé</option><option value="Carrinho">Carrinho</option></optgroup>
           <optgroup label="Físico"><option value="Impulsão">Impulsão</option><option value="Fôlego">Fôlego</option><option value="Força">Força</option><option value="Combatividade">Combatividade</option></optgroup>
         </select>
@@ -385,7 +385,7 @@
 
 <script>
 const ROLES={GL:['Goleiro','Goleiro-Líbero','Goleiro que Sai Jogando'],ZAG:['Zagueiro','Marcador','Zagueiro Aberto','Sai Jogando'],LE:['Lateral','Lateral Invertido','Ala','Ala Invertido','Ala Atacante'],LD:['Lateral','Lateral Invertido','Ala','Ala Invertido','Ala Atacante'],VOL:['Volante Oportunista','Meia Pelas Laterais','Zaga','Contenção','Armador Recuado'],MC:['Meias Pelas Pontas','Contenção','Armador Recuado','Box-to-Box','Armador'],MEI:['Camisa 10 Clássico','Armador','Atacante Sombra','Meia Pelas Pontas'],ME:['Ala','Armador Aberto','Meia Aberto','Corta pra Dentro'],MD:['Ala','Armador Aberto','Meia Aberto','Corta pra Dentro'],PE:['Ala','Armador Aberto','Corta pra Dentro'],PD:['Ala','Armador Aberto','Corta pra Dentro'],ATA:['Pivô','Falso 9','Oportunista','Centroavante']};
-const VC={forragem:{label:'Forragem',color:'#f87171',border:'rgba(248,113,113,0.6)'},bagre:{label:'Bagre',color:'#f87171',border:'rgba(248,113,113,0.6)'},comum:{label:'Comum da Bola',color:'#fbbf24',border:'rgba(251,191,36,0.6)'},agrada:{label:'Me Agrada',color:'#34d399',border:'rgba(52,211,153,0.6)'},meta:{label:'Muito Meta',color:'#60a5fa',border:'rgba(96,165,250,0.6)'},temquefazer:{label:'Tem que Fazer',color:'#c084fc',border:'rgba(192,132,252,0.6)'}};
+const VC={forragem:{label:'Forragem',color:'#b45309',border:'rgba(146,64,14,0.6)'},bagre:{label:'Bagre',color:'#f87171',border:'rgba(248,113,113,0.6)'},comum:{label:'Comum da Bola',color:'#fbbf24',border:'rgba(251,191,36,0.6)'},agrada:{label:'Me Agrada',color:'#34d399',border:'rgba(52,211,153,0.6)'},meta:{label:'Muito Meta',color:'#60a5fa',border:'rgba(96,165,250,0.6)'},temquefazer:{label:'Tem que Fazer',color:'#c084fc',border:'rgba(192,132,252,0.6)'}};
 const PC={barato:{label:'Barato',bar:'20%'},razoavel:{label:'Justo',bar:'55%'},caro:{label:'Caro',bar:'80%'}};
 const AC={excelente:{label:'Excelente',bar:'95%'},bom:{label:'Bom',bar:'70%'},mediano:{label:'OK',bar:'45%'},ruim:{label:'Ruim',bar:'20%'}};
 const AVAL_COLORS={excelente:'#34d399',bom:'#60a5fa',mediano:'#fbbf24',ruim:'#f87171'};
