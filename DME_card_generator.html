@@ -95,12 +95,12 @@
   .name-strip.in { transform: translateY(0); opacity: 1; }
   .name-val { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
   .name-meta { font-size: 8px; color: rgba(192,132,252,0.5); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
-  .card-attr-vert { position: absolute; top: 14%; z-index: 11; display: flex; flex-direction: row; align-items: center; gap: 4px; opacity: 0; transition: opacity 0.4s, transform 0.4s; }
+  .card-attr-vert { position: absolute; top: 14%; z-index: 11; display: flex; flex-direction: column; align-items: center; gap: 4px; opacity: 0; transition: opacity 0.4s, transform 0.4s; }
   .card-attr-vert.in { opacity: 1; transform: translateX(0) !important; }
   .card-attr-vert-left { left: 2%; transform: translateX(-8px); }
   .card-attr-vert-right { right: 3%; transform: translateX(8px); }
   .vert-label { font-size: 8px; letter-spacing: 1px; color: rgba(192,132,252,0.5); text-transform: uppercase; font-weight: 700; white-space: nowrap; }
-  .vert-stars-wrap { display: flex; flex-direction: row; gap: 2px; }
+  .vert-stars-wrap { display: flex; flex-direction: column; gap: 3px; }
   .cstar { font-size: 13px; color: #a855f7; text-shadow: 0 0 4px rgba(168,85,247,0.5); }
   .cstar.empty { color: rgba(168,85,247,0.2); text-shadow: none; }
   .stats-section { position: absolute; top: 60%; left: 4%; right: 22%; z-index: 10; opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; }
@@ -125,7 +125,7 @@
   .panel-stat { margin-bottom: 7px; }
   .panel-stat-name { font-size: 8px; color: rgba(192,132,252,0.55); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; }
   .panel-stat-val { font-size: 20px; font-weight: 700; color: #e9d5ff; line-height: 1.1; }
-  .panel-fi { font-size: 13px; color: rgba(192,132,252,0.85); margin-bottom: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .panel-fi { font-size: 13px; color: rgba(192,132,252,0.85); margin-bottom: 5px; white-space: normal; word-break: break-word; }
   .panel-fi span { color: #c084fc; font-weight: 700; }
   .act-screen { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
   .act-screen.in { opacity: 1; }
@@ -415,7 +415,7 @@
 </div>
 
 <script>
-const ROLES={GL:['Goleiro','Goleiro-Líbero','Goleiro que Sai Jogando'],ZAG:['Zagueiro','Marcador','Zagueiro Aberto','Sai Jogando'],LE:['Lateral','Lateral Invertido','Ala','Ala Invertido','Ala Atacante'],LD:['Lateral','Lateral Invertido','Ala','Ala Invertido','Ala Atacante'],VOL:['Volante Oportunista','Meia Pelas Laterais','Zaga','Contenção','Armador Recuado'],MC:['Meias Pelas Pontas','Contenção','Armador Recuado','Box-to-Box','Armador'],MEI:['Camisa 10 Clássico','Armador','Atacante Sombra','Meia Pelas Pontas'],ME:['Ala','Armador Aberto','Meia Aberto','Corta pra Dentro'],MD:['Ala','Armador Aberto','Meia Aberto','Corta pra Dentro'],PE:['Ala','Armador Aberto','Corta pra Dentro'],PD:['Ala','Armador Aberto','Corta pra Dentro'],ATA:['Pivô','Falso 9','Oportunista','Centroavante']};
+const ROLES={GL:['Goleiro','Goleiro-Líbero','Goleiro que Sai Jogando'],ZAG:['Defesa','Marcador','Zagueiro Aberto','Sai Jogando'],LE:['Lateral','Lateral Invertido','Ala','Ala Invertido','Ala Atacante'],LD:['Lateral','Lateral Invertido','Ala','Ala Invertido','Ala Atacante'],VOL:['Volante Oportunista','Meia Pelas Laterais','Zaga','Contenção','Armador Recuado'],MC:['Meias Pelas Pontas','Contenção','Armador Recuado','Box-to-Box','Armador'],MEI:['Camisa 10 Clássico','Armador','Atacante Sombra','Meia Pelas Pontas'],ME:['Ala','Armador Aberto','Meia Aberto','Corta pra Dentro'],MD:['Ala','Armador Aberto','Meia Aberto','Corta pra Dentro'],PE:['Ala','Armador Aberto','Corta pra Dentro'],PD:['Ala','Armador Aberto','Corta pra Dentro'],ATA:['Pivô','Falso 9','Oportunista','Centroavante']};
 const VC={forragem:{label:'Forragem',color:'#b45309',border:'rgba(146,64,14,0.6)'},bagre:{label:'Bagre',color:'#f87171',border:'rgba(248,113,113,0.6)'},comum:{label:'Comum da Bola',color:'#fbbf24',border:'rgba(251,191,36,0.6)'},agrada:{label:'Me Agrada',color:'#34d399',border:'rgba(52,211,153,0.6)'},meta:{label:'Muito Meta',color:'#60a5fa',border:'rgba(96,165,250,0.6)'},temquefazer:{label:'Tem que Fazer',color:'#c084fc',border:'rgba(192,132,252,0.6)'}};
 const PC={barato:{label:'Barato',bar:'20%'},razoavel:{label:'Justo',bar:'55%'},caro:{label:'Caro',bar:'80%'}};
 const AC={excelente:{label:'Excelente',bar:'95%'},bom:{label:'Bom',bar:'70%'},mediano:{label:'OK',bar:'45%'},ruim:{label:'Ruim',bar:'20%'}};
