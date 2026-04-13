@@ -69,7 +69,7 @@
   .fs-overlay { display: none; position: fixed; inset: 0; z-index: 9999; background: #0d0011; flex-direction: column; align-items: center; justify-content: center; }
   .fs-overlay.open { display: flex; }
   .fs-close { position: fixed; top: 16px; right: 16px; z-index: 10000; background: rgba(220,200,255,0.15); border: 1px solid rgba(192,132,252,0.6); border-radius: 6px; color: #e9d5ff; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; padding: 8px 16px; user-select: none; }
-  .fs-scene-wrap { width: min(100vw, calc(100vh * 9 / 16)); height: min(100vh, calc(100vw * 16 / 9)); aspect-ratio: 9/16; position: relative; }
+  .fs-scene-wrap { aspect-ratio: 9/16; position: relative; }
   .fs-intro { position: fixed; inset: 0; z-index: 9998; display: flex; align-items: center; justify-content: center; background: #0d0011; opacity: 0; pointer-events: none; transition: opacity 0.5s; }
   .fs-intro.in { opacity: 1; pointer-events: auto; }
   .fs-intro-content { display: flex; flex-direction: column; align-items: center; gap: 32px; }
@@ -453,7 +453,7 @@ function runAnim(sfx,pc,ac){
 function playAnimation(){rAll('');const {pc,ac}=prepData('');setTimeout(()=>runAnim('',pc,ac),100);}
 function replay(){rAll('');const {pc,ac}=prepData('');setTimeout(()=>runAnim('',pc,ac),100);}
 let _fsCloseTimer=null;
-function openFullscreen(){rAll('FS');const {pc,ac}=prepData('FS');const btn=document.getElementById('fsClose');btn.style.display='none';if(_fsCloseTimer)clearTimeout(_fsCloseTimer);const intro=document.getElementById('fsIntro');const introCard=document.getElementById('introCardImg');introCard.src=document.getElementById('cardImgFS').src;document.getElementById('fsOverlay').classList.add('open');setTimeout(()=>intro.classList.add('in'),50);setTimeout(()=>intro.classList.remove('in'),2000);setTimeout(()=>runAnim('FS',pc,ac),2500);_fsCloseTimer=setTimeout(()=>{btn.style.display='';},sv?24500:22500);}
+function openFullscreen(){rAll('FS');const {pc,ac}=prepData('FS');const btn=document.getElementById('fsClose');btn.style.display='none';if(_fsCloseTimer)clearTimeout(_fsCloseTimer);const wrap=document.querySelector('.fs-scene-wrap');const sw=window.innerWidth,sh=window.innerHeight;if(sw/sh>9/16){wrap.style.height=sh+'px';wrap.style.width=(sh*9/16)+'px';}else{wrap.style.width=sw+'px';wrap.style.height=(sw*16/9)+'px';}const intro=document.getElementById('fsIntro');const introCard=document.getElementById('introCardImg');introCard.src=document.getElementById('cardImgFS').src;document.getElementById('fsOverlay').classList.add('open');setTimeout(()=>intro.classList.add('in'),50);setTimeout(()=>intro.classList.remove('in'),2000);setTimeout(()=>runAnim('FS',pc,ac),2500);_fsCloseTimer=setTimeout(()=>{btn.style.display='';},sv?24500:22500);}
 function closeFullscreen(){document.getElementById('fsOverlay').classList.remove('open');}
 function replayFS(){rAll('FS');const {pc,ac}=prepData('FS');setTimeout(()=>runAnim('FS',pc,ac),100);}
 updateRoles();
