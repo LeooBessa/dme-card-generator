@@ -95,11 +95,12 @@
   .name-strip.in { transform: translateY(0); opacity: 1; }
   .name-val { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
   .name-meta { font-size: 8px; color: rgba(192,132,252,0.5); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
-  .card-attrs { position: absolute; top: 52%; left: 0; right: 0; z-index: 10; text-align: center; opacity: 0; transform: translateY(8px); transition: opacity 0.4s, transform 0.4s; }
-  .card-attrs.in { opacity: 1; transform: translateY(0); }
-  .card-attr-row { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 4px; }
-  .card-attr-label { font-size: 10px; letter-spacing: 2px; color: rgba(192,132,252,0.4); text-transform: uppercase; width: 80px; text-align: right; white-space: nowrap; }
-  .card-attr-stars { display: flex; gap: 2px; }
+  .card-attr-vert { position: absolute; top: 8%; z-index: 11; display: flex; flex-direction: row; align-items: center; gap: 4px; opacity: 0; transition: opacity 0.4s, transform 0.4s; }
+  .card-attr-vert.in { opacity: 1; transform: translateX(0) !important; }
+  .card-attr-vert-left { left: 2%; transform: translateX(-8px); }
+  .card-attr-vert-right { right: 3%; transform: translateX(8px); }
+  .vert-label { font-size: 8px; letter-spacing: 1px; color: rgba(192,132,252,0.5); text-transform: uppercase; font-weight: 700; white-space: nowrap; }
+  .vert-stars-wrap { display: flex; flex-direction: row; gap: 2px; }
   .cstar { font-size: 13px; color: #a855f7; text-shadow: 0 0 4px rgba(168,85,247,0.5); }
   .cstar.empty { color: rgba(168,85,247,0.2); text-shadow: none; }
   .stats-section { position: absolute; top: 60%; left: 4%; right: 22%; z-index: 10; opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; }
@@ -116,7 +117,7 @@
   .funcoes-sec.in { opacity: 1; transform: translateY(0); }
   .fi { font-size: 16px; color: rgba(192,132,252,0.55); margin-bottom: 1px; white-space: nowrap; }
   .fi span { color: #c084fc; font-weight: 700; }
-  .side-panel { position: absolute; top: 57%; width: 37%; background: rgba(13,0,17,0.92); border: 1px solid rgba(168,85,247,0.45); border-radius: 6px; padding: 10px 8px; z-index: 11; opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; box-shadow: 0 0 20px rgba(168,85,247,0.2), inset 0 0 12px rgba(168,85,247,0.05); }
+  .side-panel { position: absolute; top: 56%; width: 37%; background: rgba(13,0,17,0.92); border: 1px solid rgba(168,85,247,0.45); border-radius: 6px; padding: 10px 8px; z-index: 11; opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; box-shadow: 0 0 20px rgba(168,85,247,0.2), inset 0 0 12px rgba(168,85,247,0.05); }
   .side-panel.in { opacity: 1; transform: translateY(0); }
   .panel-left { left: 2%; }
   .panel-right { left: 41%; }
@@ -364,7 +365,8 @@
         <div class="logo-tag" id="logoTag"><img src="logo_gfc-removebg-preview.png" alt="logo"/></div>
         <div class="card-wrap" id="cardWrap"><img class="card-img" id="cardImg" src="" alt=""/><div class="card-ovr" id="cardOvr"><div class="card-ovr-val" id="ovrVal">—</div><div class="card-ovr-pos" id="posVal">—</div></div></div>
         <div class="name-strip" id="nameStrip"><div class="name-val" id="nameVal"></div><div class="name-meta" id="metaVal"></div></div>
-        <div class="card-attrs" id="cardAttrs"><div class="card-attr-row"><div class="card-attr-label">Fintas</div><div class="card-attr-stars" id="fintasStars"></div></div><div class="card-attr-row"><div class="card-attr-label">Perna Ruim</div><div class="card-attr-stars" id="pernaStars"></div></div></div>
+        <div class="card-attr-vert card-attr-vert-left" id="cardAttrLeft"><div class="vert-label">FIN</div><div class="vert-stars-wrap" id="fintasStars"></div></div>
+        <div class="card-attr-vert card-attr-vert-right" id="cardAttrRight"><div class="vert-label">PR</div><div class="vert-stars-wrap" id="pernaStars"></div></div>
         <div class="side-panel panel-left" id="panelLeft"><div class="panel-title">Pontos Fracos</div><div id="panelStatsDisplay"></div></div>
         <div class="side-panel panel-right" id="panelRight"><div class="panel-title">Funções</div><div id="panelFuncoesDisplay"></div></div>
         <div class="stats-section" id="statsSection" style="display:none"><div class="sec-title">Pontos Fracos</div><div id="statsDisplay"></div><div class="sdivider"></div><div class="funcoes-sec" id="funcoesSec"><div class="sec-title">Funções</div><div id="funcoesDisplay"></div></div></div>
@@ -398,7 +400,8 @@
       <div class="logo-tag" id="logoTagFS"><img src="logo_gfc-removebg-preview.png" alt="logo"/></div>
       <div class="card-wrap" id="cardWrapFS"><img class="card-img" id="cardImgFS" src="" alt=""/><div class="card-ovr" id="cardOvrFS"><div class="card-ovr-val" id="ovrValFS">—</div><div class="card-ovr-pos" id="posValFS">—</div></div></div>
       <div class="name-strip" id="nameStripFS"><div class="name-val" id="nameValFS"></div><div class="name-meta" id="metaValFS"></div></div>
-      <div class="card-attrs" id="cardAttrsFS"><div class="card-attr-row"><div class="card-attr-label">Fintas</div><div class="card-attr-stars" id="fintasStarsFS"></div></div><div class="card-attr-row"><div class="card-attr-label">Perna Ruim</div><div class="card-attr-stars" id="pernaStarsFS"></div></div></div>
+      <div class="card-attr-vert card-attr-vert-left" id="cardAttrLeftFS"><div class="vert-label">FIN</div><div class="vert-stars-wrap" id="fintasStarsFS"></div></div>
+      <div class="card-attr-vert card-attr-vert-right" id="cardAttrRightFS"><div class="vert-label">PR</div><div class="vert-stars-wrap" id="pernaStarsFS"></div></div>
       <div class="side-panel panel-left" id="panelLeftFS"><div class="panel-title">Pontos Fracos</div><div id="panelStatsDisplayFS"></div></div>
       <div class="side-panel panel-right" id="panelRightFS"><div class="panel-title">Funções</div><div id="panelFuncoesDisplayFS"></div></div>
       <div class="stats-section" id="statsSectionFS" style="display:none"><div class="sec-title">Pontos Fracos</div><div id="statsDisplayFS"></div><div class="sdivider"></div><div class="funcoes-sec" id="funcoesSectFS"><div class="sec-title">Funções</div><div id="funcoesDisplayFS"></div></div></div>
@@ -436,7 +439,7 @@ function flash(sfx,cb){const f=g('flash'+sfx);f.style.transition='none';f.style.
 function mF(sfx,n,iv,cb){let i=0;function go(){flash(sfx,()=>{i++;if(i<n)setTimeout(go,iv);else if(cb)setTimeout(cb,80);});}go();}
 function aIn(id,d){setTimeout(()=>{const el=g(id);if(el)el.classList.add('in');},d);}
 function makeStars(val,id){const el=g(id);if(!el)return;el.innerHTML='';for(let i=1;i<=5;i++){const s=document.createElement('span');s.className='cstar'+(i<=val?' ':' empty');s.textContent='★';el.appendChild(s);}}
-function rAll(sfx){['dmeTag','logoTag','cardWrap','cardOvr','nameStrip','cardAttrs','panelLeft','panelRight','statsSection','funcoesSec','actPreco','actAval','actVerdict','cTL','cTR','cBL','cBR','verdictEyebrow','verdictStamp','verdictLine','verdictDme','replayBtn'].forEach(id=>{const el=g(id+sfx);if(el)el.classList.remove('in');});['aPrecoBar','aAvalBar'].forEach(id=>{const el=g(id+sfx);if(el)el.style.width='0%';});}
+function rAll(sfx){['dmeTag','logoTag','cardWrap','cardOvr','nameStrip','cardAttrLeft','cardAttrRight','panelLeft','panelRight','statsSection','funcoesSec','actPreco','actAval','actVerdict','cTL','cTR','cBL','cBR','verdictEyebrow','verdictStamp','verdictLine','verdictDme','replayBtn'].forEach(id=>{const el=g(id+sfx);if(el)el.classList.remove('in');});['aPrecoBar','aAvalBar'].forEach(id=>{const el=g(id+sfx);if(el)el.style.width='0%';});}
 function fsId(sfx){return sfx===''?'funcoesSec':'funcoesSect'+sfx;}
 function prepData(sfx){
   const pc=PC[g('fPrecoClass').value]||PC.caro,ac=AC[g('fAval').value]||AC.bom;
@@ -458,7 +461,7 @@ function prepData(sfx){
 }
 function runAnim(sfx,pc,ac){
   const TD=sv?20000:16000;sP(sfx,TD);flash(sfx);
-  aIn('dmeTag'+sfx,300);aIn('logoTag'+sfx,300);aIn('cardWrap'+sfx,600);aIn('cardAttrs'+sfx,2200);
+  aIn('dmeTag'+sfx,300);aIn('logoTag'+sfx,300);aIn('cardWrap'+sfx,600);aIn('cardAttrLeft'+sfx,2200);aIn('cardAttrRight'+sfx,2200);
   setTimeout(()=>{aIn('panelLeft'+sfx,0);aIn('panelRight'+sfx,200);},3200);
   aIn(fsId(sfx),5500);
   setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actPreco'+sfx,0);setTimeout(()=>{const b=g('aPrecoBar'+sfx);if(b){b.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';b.style.width=pc.bar;}},200);});},7200);
