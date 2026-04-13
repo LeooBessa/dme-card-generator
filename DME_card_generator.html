@@ -85,17 +85,17 @@
   .logo-tag { position: absolute; top: 10px; right: 14px; z-index: 10; width: 48px; height: 48px; opacity: 0; transform: translateX(20px); transition: opacity 0.5s, transform 0.5s; }
   .logo-tag.in { opacity: 1; transform: translateX(0); }
   .logo-tag img { width: 100%; height: 100%; object-fit: contain; }
-  .card-wrap { position: absolute; top: 3%; left: 50%; transform: translateX(-50%) translateY(-120%) scale(0.8); opacity: 0; z-index: 10; width: 58%; transition: transform 0.8s cubic-bezier(0.34,1.3,0.64,1), opacity 0.5s; }
+  .card-wrap { position: absolute; top: 5%; left: 50%; transform: translateX(-50%) translateY(-120%) scale(0.8); opacity: 0; z-index: 10; width: 50%; transition: transform 0.8s cubic-bezier(0.34,1.3,0.64,1), opacity 0.5s; }
   .card-wrap.in { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
   .card-img { width: 100%; border-radius: 6px; border: 1px solid rgba(192,132,252,0.3); display: block; filter: drop-shadow(0 0 20px rgba(168,85,247,0.5)); }
   .card-ovr { display: none; }
   .card-ovr-val { font-size: 13px; font-weight: 900; color: #fff; line-height: 1; }
   .card-ovr-pos { font-size: 6px; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
-  .name-strip { position: absolute; top: 43%; left: 0; right: 0; z-index: 10; text-align: center; transform: translateY(14px); opacity: 0; transition: transform 0.5s, opacity 0.5s; }
+  .name-strip { position: absolute; top: 45%; left: 0; right: 0; z-index: 10; text-align: center; transform: translateY(14px); opacity: 0; transition: transform 0.5s, opacity 0.5s; }
   .name-strip.in { transform: translateY(0); opacity: 1; }
   .name-val { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
   .name-meta { font-size: 8px; color: rgba(192,132,252,0.5); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
-  .card-attrs { position: absolute; top: 49%; left: 0; right: 0; z-index: 10; text-align: center; opacity: 0; transform: translateY(8px); transition: opacity 0.4s, transform 0.4s; }
+  .card-attrs { position: absolute; top: 51%; left: 0; right: 0; z-index: 10; text-align: center; opacity: 0; transform: translateY(8px); transition: opacity 0.4s, transform 0.4s; }
   .card-attrs.in { opacity: 1; transform: translateY(0); }
   .card-attr-row { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 4px; }
   .card-attr-label { font-size: 16px; letter-spacing: 2px; color: rgba(192,132,252,0.5); text-transform: uppercase; width: 120px; text-align: right; white-space: nowrap; }
@@ -116,6 +116,16 @@
   .funcoes-sec.in { opacity: 1; transform: translateY(0); }
   .fi { font-size: 16px; color: rgba(192,132,252,0.55); margin-bottom: 1px; white-space: nowrap; }
   .fi span { color: #c084fc; font-weight: 700; }
+  .side-panel { position: absolute; top: 10%; width: 23%; background: rgba(13,0,17,0.92); border: 1px solid rgba(168,85,247,0.45); border-radius: 6px; padding: 8px 6px; z-index: 11; opacity: 0; transition: opacity 0.5s, transform 0.5s; box-shadow: 0 0 20px rgba(168,85,247,0.2), inset 0 0 12px rgba(168,85,247,0.05); }
+  .side-panel.in { opacity: 1; transform: translateX(0) !important; }
+  .panel-left { left: 1%; transform: translateX(-12px); }
+  .panel-right { right: 1%; transform: translateX(12px); }
+  .panel-title { font-size: 7px; font-weight: 700; letter-spacing: 2px; color: #a855f7; text-transform: uppercase; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 0.5px solid rgba(168,85,247,0.25); }
+  .panel-stat { margin-bottom: 6px; }
+  .panel-stat-name { font-size: 7px; color: rgba(192,132,252,0.55); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; }
+  .panel-stat-val { font-size: 16px; font-weight: 700; color: #e9d5ff; line-height: 1.1; }
+  .panel-fi { font-size: 10px; color: rgba(192,132,252,0.85); margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .panel-fi span { color: #c084fc; font-weight: 700; }
   .act-screen { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
   .act-screen.in { opacity: 1; }
   .act-screen-bg { position: absolute; inset: 0; background: #060010; opacity: 0.97; }
@@ -355,7 +365,9 @@
         <div class="card-wrap" id="cardWrap"><img class="card-img" id="cardImg" src="" alt=""/><div class="card-ovr" id="cardOvr"><div class="card-ovr-val" id="ovrVal">—</div><div class="card-ovr-pos" id="posVal">—</div></div></div>
         <div class="name-strip" id="nameStrip"><div class="name-val" id="nameVal"></div><div class="name-meta" id="metaVal"></div></div>
         <div class="card-attrs" id="cardAttrs"><div class="card-attr-row"><div class="card-attr-label">Fintas</div><div class="card-attr-stars" id="fintasStars"></div></div><div class="card-attr-row"><div class="card-attr-label">Perna Ruim</div><div class="card-attr-stars" id="pernaStars"></div></div></div>
-        <div class="stats-section" id="statsSection"><div class="sec-title">Pontos Fracos</div><div id="statsDisplay"></div><div class="sdivider"></div><div class="funcoes-sec" id="funcoesSec"><div class="sec-title">Funções</div><div id="funcoesDisplay"></div></div></div>
+        <div class="side-panel panel-left" id="panelLeft"><div class="panel-title">Pontos Fracos</div><div id="panelStatsDisplay"></div></div>
+        <div class="side-panel panel-right" id="panelRight"><div class="panel-title">Funções</div><div id="panelFuncoesDisplay"></div></div>
+        <div class="stats-section" id="statsSection" style="display:none"><div class="sec-title">Pontos Fracos</div><div id="statsDisplay"></div><div class="sdivider"></div><div class="funcoes-sec" id="funcoesSec"><div class="sec-title">Funções</div><div id="funcoesDisplay"></div></div></div>
         <div class="act-screen act-preco" id="actPreco"><div class="act-screen-bg"></div><div class="act-screen-content"><div class="scr-label">Preço da carta</div><div class="scr-val" id="aPrecoClass">Caro</div><div class="scr-sub" id="aPrecoVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPrecoBar"></div></div></div></div>
         <div class="act-screen act-aval" id="actAval"><div class="act-screen-bg"></div><div class="act-screen-content"><div class="scr-label">Qualidade da carta</div><div class="scr-val" id="aAvalVal">—</div><div class="scr-sub" id="aAvalOvr">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aAvalBar"></div></div></div></div>
         <div class="act-verdict" id="actVerdict"><div class="act-verdict-bg"></div><div class="corner tl" id="cTL"></div><div class="corner tr" id="cTR"></div><div class="corner bl" id="cBL"></div><div class="corner br" id="cBR"></div><div class="verdict-content"><div class="verdict-eyebrow" id="verdictEyebrow">Veredito DME</div><div class="verdict-stamp" id="verdictStamp"><div class="verdict-stamp-inner" id="verdictStampInner"><div class="verdict-stamp-word" id="verdictStampWord">—</div></div></div><div class="verdict-line" id="verdictLine"></div><div class="verdict-dme" id="verdictDme">Análise Galandinho</div><div class="replay-div" id="replayBtn" onclick="replay()">↺ Repetir</div></div></div>
@@ -387,7 +399,9 @@
       <div class="card-wrap" id="cardWrapFS"><img class="card-img" id="cardImgFS" src="" alt=""/><div class="card-ovr" id="cardOvrFS"><div class="card-ovr-val" id="ovrValFS">—</div><div class="card-ovr-pos" id="posValFS">—</div></div></div>
       <div class="name-strip" id="nameStripFS"><div class="name-val" id="nameValFS"></div><div class="name-meta" id="metaValFS"></div></div>
       <div class="card-attrs" id="cardAttrsFS"><div class="card-attr-row"><div class="card-attr-label">Fintas</div><div class="card-attr-stars" id="fintasStarsFS"></div></div><div class="card-attr-row"><div class="card-attr-label">Perna Ruim</div><div class="card-attr-stars" id="pernaStarsFS"></div></div></div>
-      <div class="stats-section" id="statsSectionFS"><div class="sec-title">Pontos Fracos</div><div id="statsDisplayFS"></div><div class="sdivider"></div><div class="funcoes-sec" id="funcoesSectFS"><div class="sec-title">Funções</div><div id="funcoesDisplayFS"></div></div></div>
+      <div class="side-panel panel-left" id="panelLeftFS"><div class="panel-title">Pontos Fracos</div><div id="panelStatsDisplayFS"></div></div>
+      <div class="side-panel panel-right" id="panelRightFS"><div class="panel-title">Funções</div><div id="panelFuncoesDisplayFS"></div></div>
+      <div class="stats-section" id="statsSectionFS" style="display:none"><div class="sec-title">Pontos Fracos</div><div id="statsDisplayFS"></div><div class="sdivider"></div><div class="funcoes-sec" id="funcoesSectFS"><div class="sec-title">Funções</div><div id="funcoesDisplayFS"></div></div></div>
       <div class="act-screen act-preco" id="actPrecoFS"><div class="act-screen-bg"></div><div class="act-screen-content"><div class="scr-label">Preço da carta</div><div class="scr-val" id="aPrecoClassFS">Caro</div><div class="scr-sub" id="aPrecoValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPrecoBarFS"></div></div></div></div>
       <div class="act-screen act-aval" id="actAvalFS"><div class="act-screen-bg"></div><div class="act-screen-content"><div class="scr-label">Qualidade da carta</div><div class="scr-val" id="aAvalValFS">—</div><div class="scr-sub" id="aAvalOvrFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aAvalBarFS"></div></div></div></div>
       <div class="act-verdict" id="actVerdictFS"><div class="act-verdict-bg"></div><div class="corner tl" id="cTLFS"></div><div class="corner tr" id="cTRFS"></div><div class="corner bl" id="cBLFS"></div><div class="corner br" id="cBRFS"></div><div class="verdict-content"><div class="verdict-eyebrow" id="verdictEyebrowFS">Veredito DME</div><div class="verdict-stamp" id="verdictStampFS"><div class="verdict-stamp-inner" id="verdictStampInnerFS"><div class="verdict-stamp-word" id="verdictStampWordFS">—</div></div></div><div class="verdict-line" id="verdictLineFS"></div><div class="verdict-dme" id="verdictDmeFS">Análise Galandinho</div><div class="replay-div" id="replayBtnFS" onclick="replayFS()">↺ Repetir</div></div></div>
@@ -422,7 +436,7 @@ function flash(sfx,cb){const f=g('flash'+sfx);f.style.transition='none';f.style.
 function mF(sfx,n,iv,cb){let i=0;function go(){flash(sfx,()=>{i++;if(i<n)setTimeout(go,iv);else if(cb)setTimeout(cb,80);});}go();}
 function aIn(id,d){setTimeout(()=>{const el=g(id);if(el)el.classList.add('in');},d);}
 function makeStars(val,id){const el=g(id);if(!el)return;el.innerHTML='';for(let i=1;i<=5;i++){const s=document.createElement('span');s.className='cstar'+(i<=val?' ':' empty');s.textContent='★';el.appendChild(s);}}
-function rAll(sfx){['dmeTag','logoTag','cardWrap','cardOvr','nameStrip','cardAttrs','statsSection','funcoesSec','actPreco','actAval','actVerdict','cTL','cTR','cBL','cBR','verdictEyebrow','verdictStamp','verdictLine','verdictDme','replayBtn'].forEach(id=>{const el=g(id+sfx);if(el)el.classList.remove('in');});['aPrecoBar','aAvalBar'].forEach(id=>{const el=g(id+sfx);if(el)el.style.width='0%';});}
+function rAll(sfx){['dmeTag','logoTag','cardWrap','cardOvr','nameStrip','cardAttrs','panelLeft','panelRight','statsSection','funcoesSec','actPreco','actAval','actVerdict','cTL','cTR','cBL','cBR','verdictEyebrow','verdictStamp','verdictLine','verdictDme','replayBtn'].forEach(id=>{const el=g(id+sfx);if(el)el.classList.remove('in');});['aPrecoBar','aAvalBar'].forEach(id=>{const el=g(id+sfx);if(el)el.style.width='0%';});}
 function fsId(sfx){return sfx===''?'funcoesSec':'funcoesSect'+sfx;}
 function prepData(sfx){
   const pc=PC[g('fPrecoClass').value]||PC.caro,ac=AC[g('fAval').value]||AC.bom;
@@ -435,15 +449,17 @@ function prepData(sfx){
   g('aAvalVal'+sfx).textContent=ac.label;
   g('aAvalOvr'+sfx).textContent='';
   if(sv){const vc=VC[sv];g('verdictStampWord'+sfx).textContent=vc.label;g('verdictStampWord'+sfx).style.color=vc.color;g('verdictStampInner'+sfx).style.borderColor=vc.border;g('verdictStampInner'+sfx).style.boxShadow='0 0 30px '+vc.color+'33';}
-  const sEl=g('statsDisplay'+sfx);sEl.innerHTML='';
-  if(stats.length){stats.forEach((s,i)=>{const row=document.createElement('div');row.className='stat-row';row.innerHTML='<div class="stat-name">'+s.name+'</div><div class="stat-track"><div class="stat-fill" id="as'+sfx+i+'" style="width:0%"></div></div><div class="stat-num" id="an'+sfx+i+'">0</div>';sEl.appendChild(row);});}else{sEl.innerHTML='<div class="fi" style="color:rgba(192,132,252,0.2)">—</div>';}
-  g('funcoesDisplay'+sfx).innerHTML=funcoes.length?funcoes.map(f=>{if(f.includes('Faz Todas')){return '<div class="fi">'+f.replace('++','')+'<span>++</span></div>';}const nv=f.endsWith('++')? '++':'+',b=f.slice(0,-nv.length);return '<div class="fi">'+b+'<span>'+nv+'</span></div>';}).join(''):'<div class="fi" style="color:rgba(192,132,252,0.2)">—</div>';
+  const sEl=g('statsDisplay'+sfx);if(sEl)sEl.innerHTML='';
+  if(stats.length){stats.forEach((s,i)=>{if(sEl){const row=document.createElement('div');row.className='stat-row';row.innerHTML='<div class="stat-name">'+s.name+'</div><div class="stat-track"><div class="stat-fill" id="as'+sfx+i+'" style="width:0%"></div></div><div class="stat-num" id="an'+sfx+i+'">0</div>';sEl.appendChild(row);}});}else{if(sEl)sEl.innerHTML='<div class="fi" style="color:rgba(192,132,252,0.2)">—</div>';}
+  const fEl=g('funcoesDisplay'+sfx);if(fEl)fEl.innerHTML=funcoes.length?funcoes.map(f=>{if(f.includes('Faz Todas')){return '<div class="fi">'+f.replace('++','')+'<span>++</span></div>';}const nv=f.endsWith('++')? '++':'+',b=f.slice(0,-nv.length);return '<div class="fi">'+b+'<span>'+nv+'</span></div>';}).join(''):'<div class="fi" style="color:rgba(192,132,252,0.2)">—</div>';
+  const pSEl=g('panelStatsDisplay'+sfx);if(pSEl){pSEl.innerHTML=stats.length?stats.map(s=>'<div class="panel-stat"><div class="panel-stat-name">'+s.name+'</div><div class="panel-stat-val">'+s.val+'</div></div>').join(''):'<div class="panel-fi" style="color:rgba(192,132,252,0.2)">—</div>';}
+  const pFEl=g('panelFuncoesDisplay'+sfx);if(pFEl){pFEl.innerHTML=funcoes.length?funcoes.map(f=>{if(f.includes('Faz Todas')){return '<div class="panel-fi">'+f.replace('++','')+'<span>++</span></div>';}const nv=f.endsWith('++')? '++':'+',b=f.slice(0,-nv.length);return '<div class="panel-fi">'+b+'<span>'+nv+'</span></div>';}).join(''):'<div class="panel-fi" style="color:rgba(192,132,252,0.2)">—</div>';}
   return {pc,ac};
 }
 function runAnim(sfx,pc,ac){
   const TD=sv?20000:16000;sP(sfx,TD);flash(sfx);
   aIn('dmeTag'+sfx,300);aIn('logoTag'+sfx,300);aIn('cardWrap'+sfx,600);aIn('cardAttrs'+sfx,2200);
-  setTimeout(()=>{aIn('statsSection'+sfx,0);stats.forEach((s,i)=>{setTimeout(()=>{const bar=g('as'+sfx+i);if(bar){bar.style.transition='width 1.2s cubic-bezier(0.4,0,0.2,1)';bar.style.width=s.val+'%';const el=g('an'+sfx+i);if(el){const start=performance.now();(function step(now){const p=Math.min((now-start)/1100,1);el.textContent=Math.round((1-Math.pow(1-p,3))*s.val);if(p<1)requestAnimationFrame(step);else el.textContent=s.val;})(performance.now());};}},i*350);});},3200);
+  setTimeout(()=>{aIn('panelLeft'+sfx,0);aIn('panelRight'+sfx,200);},3200);
   aIn(fsId(sfx),5500);
   setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actPreco'+sfx,0);setTimeout(()=>{const b=g('aPrecoBar'+sfx);if(b){b.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';b.style.width=pc.bar;}},200);});},7200);
   setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actAval'+sfx,0);setTimeout(()=>{const b=g('aAvalBar'+sfx);if(b){b.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';b.style.width=ac.bar;}},200);});},11000);
