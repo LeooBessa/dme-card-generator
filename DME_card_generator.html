@@ -166,8 +166,12 @@
   .aval-half-play .scr-val { color: var(--play-bright, #c084fc); }
   .aval-half-carta .scr-bar { background: linear-gradient(90deg, color-mix(in srgb, var(--aval-bright, #a855f7) 40%, #000) 0%, var(--aval-bright, #a855f7) 40%, #fff 55%, var(--aval-bright, #a855f7) 70%, color-mix(in srgb, var(--aval-bright, #a855f7) 40%, #000) 100%); box-shadow: 0 0 8px var(--aval-bright, #a855f7); }
   .aval-half-play .scr-bar { background: linear-gradient(90deg, color-mix(in srgb, var(--play-bright, #a855f7) 40%, #000) 0%, var(--play-bright, #a855f7) 40%, #fff 55%, var(--play-bright, #a855f7) 70%, color-mix(in srgb, var(--play-bright, #a855f7) 40%, #000) 100%); box-shadow: 0 0 8px var(--play-bright, #a855f7); }
-  .verdict-cta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 2px; color: #e9d5ff; text-transform: uppercase; margin-top: 20px; opacity: 0; transition: opacity 0.6s; text-align: center; border: 1px solid rgba(192,132,252,0.45); padding: 8px 18px; border-radius: 20px; background: rgba(168,85,247,0.12); }
-  .verdict-cta.in { opacity: 1; }
+  @keyframes ctaGlow {
+    0%, 100% { box-shadow: 0 0 6px rgba(192,132,252,0.4), 0 0 14px rgba(192,132,252,0.15); border-color: rgba(192,132,252,0.45); }
+    50%       { box-shadow: 0 0 14px rgba(192,132,252,0.9), 0 0 28px rgba(192,132,252,0.4); border-color: rgba(192,132,252,0.9); }
+  }
+  .verdict-cta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 2px; color: #e9d5ff; text-transform: uppercase; margin-top: 20px; opacity: 0; transform: scale(0.3); transition: opacity 0.4s, transform 0.6s cubic-bezier(0.34,1.4,0.64,1); text-align: center; border: 1px solid rgba(192,132,252,0.45); padding: 8px 18px; border-radius: 20px; background: rgba(168,85,247,0.12); }
+  .verdict-cta.in { opacity: 1; transform: scale(1); animation: ctaGlow 2s ease-in-out infinite; animation-delay: 0.5s; }
   .act-verdict { position: absolute; inset: 0; z-index: 70; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
   .act-verdict.in { opacity: 1; pointer-events: all; }
   .act-verdict-bg { position: absolute; inset: 0; background: #060010; opacity: 0.97; }
