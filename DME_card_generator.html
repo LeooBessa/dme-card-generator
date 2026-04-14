@@ -154,16 +154,19 @@
   .act-aval .scr-sub { color: rgba(192,132,252,0.6); }
   .act-aval .scr-bar-wrap { background: rgba(168,85,247,0.15); }
   .act-aval .scr-bar { background: linear-gradient(90deg, color-mix(in srgb, var(--aval-bright, #a855f7) 40%, #000) 0%, var(--aval-bright, #a855f7) 40%, #fff 55%, var(--aval-bright, #a855f7) 70%, color-mix(in srgb, var(--aval-bright, #a855f7) 40%, #000) 100%); box-shadow: 0 0 8px var(--aval-bright, #a855f7), 0 0 16px color-mix(in srgb, var(--aval-bright, #a855f7) 60%, transparent); }
-  .aval-split { position: relative; z-index: 2; display: flex; width: 100%; padding: 0 12px; gap: 10px; align-items: flex-start; justify-content: center; }
-  .aval-half { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .aval-half .scr-val { font-size: clamp(26px, 9vw, 48px); }
-  .aval-half .scr-bar-wrap { width: 85%; }
-  .aval-divider { width: 1px; height: 130px; background: rgba(192,132,252,0.2); flex-shrink: 0; align-self: center; margin-top: 20px; }
+  .aval-split { position: relative; z-index: 2; display: flex; flex-direction: column; width: 100%; height: 100%; padding: 16px 12px; gap: 0; align-items: center; justify-content: center; }
+  .aval-half { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .aval-half .scr-label { font-size: 10px; letter-spacing: 3px; }
+  .aval-half .scr-val { font-size: clamp(30px, 10vw, 54px); }
+  .aval-half .scr-bar-wrap { width: 75%; }
+  .aval-divider { width: 55%; height: 1px; background: rgba(192,132,252,0.2); flex-shrink: 0; align-self: center; margin: 4px 0; }
+  .aval-half-play .scr-label { transition: opacity 0.4s 1.2s, transform 0.4s 1.2s; }
+  .aval-half-play .scr-val { transition: opacity 0.5s 1.4s, transform 0.6s 1.4s cubic-bezier(0.34,1.3,0.64,1); }
   .aval-half-carta .scr-val { color: var(--aval-bright, #c084fc); }
   .aval-half-play .scr-val { color: var(--play-bright, #c084fc); }
   .aval-half-carta .scr-bar { background: linear-gradient(90deg, color-mix(in srgb, var(--aval-bright, #a855f7) 40%, #000) 0%, var(--aval-bright, #a855f7) 40%, #fff 55%, var(--aval-bright, #a855f7) 70%, color-mix(in srgb, var(--aval-bright, #a855f7) 40%, #000) 100%); box-shadow: 0 0 8px var(--aval-bright, #a855f7); }
   .aval-half-play .scr-bar { background: linear-gradient(90deg, color-mix(in srgb, var(--play-bright, #a855f7) 40%, #000) 0%, var(--play-bright, #a855f7) 40%, #fff 55%, var(--play-bright, #a855f7) 70%, color-mix(in srgb, var(--play-bright, #a855f7) 40%, #000) 100%); box-shadow: 0 0 8px var(--play-bright, #a855f7); }
-  .verdict-cta { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: 3px; color: rgba(192,132,252,0.65); text-transform: uppercase; margin-top: 18px; opacity: 0; transition: opacity 0.5s; text-align: center; }
+  .verdict-cta { font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 2px; color: #e9d5ff; text-transform: uppercase; margin-top: 20px; opacity: 0; transition: opacity 0.6s; text-align: center; border: 1px solid rgba(192,132,252,0.45); padding: 8px 18px; border-radius: 20px; background: rgba(168,85,247,0.12); }
   .verdict-cta.in { opacity: 1; }
   .act-verdict { position: absolute; inset: 0; z-index: 70; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
   .act-verdict.in { opacity: 1; pointer-events: all; }
@@ -387,7 +390,7 @@
         <div class="side-panel panel-right" id="panelRight"><div class="panel-title">Funções</div><div id="panelFuncoesDisplay"></div></div>
         <div class="stats-section" id="statsSection" style="display:none"><div class="sec-title">Pontos Fracos</div><div id="statsDisplay"></div><div class="sdivider"></div><div class="funcoes-sec" id="funcoesSec"><div class="sec-title">Funções</div><div id="funcoesDisplay"></div></div></div>
         <div class="act-screen act-preco" id="actPreco"><div class="act-screen-bg"></div><div class="act-screen-content"><div class="scr-label">Preço da carta</div><div class="scr-val" id="aPrecoClass">Caro</div><div class="scr-sub" id="aPrecoVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPrecoBar"></div></div></div></div>
-        <div class="act-screen act-aval" id="actAval"><div class="act-screen-bg"></div><div class="aval-split"><div class="aval-half aval-half-carta"><div class="scr-label">Carta</div><div class="scr-val" id="aAvalVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aAvalBar"></div></div></div><div class="aval-divider"></div><div class="aval-half aval-half-play"><div class="scr-label">Playstyles</div><div class="scr-val" id="aPlayVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPlayBar"></div></div></div></div></div>
+        <div class="act-screen act-aval" id="actAval"><div class="act-screen-bg"></div><div class="aval-split"><div class="aval-half aval-half-carta"><div class="scr-label">Avaliação da Carta</div><div class="scr-val" id="aAvalVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aAvalBar"></div></div></div><div class="aval-divider"></div><div class="aval-half aval-half-play"><div class="scr-label">Avaliação de Playstyles</div><div class="scr-val" id="aPlayVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPlayBar"></div></div></div></div></div>
         <div class="act-verdict" id="actVerdict"><div class="act-verdict-bg"></div><div class="corner tl" id="cTL"></div><div class="corner tr" id="cTR"></div><div class="corner bl" id="cBL"></div><div class="corner br" id="cBR"></div><div class="verdict-content"><div class="verdict-eyebrow" id="verdictEyebrow">Veredito DME</div><div class="verdict-stamp" id="verdictStamp"><div class="verdict-stamp-inner" id="verdictStampInner"><div class="verdict-stamp-word" id="verdictStampWord">—</div></div></div><div class="verdict-line" id="verdictLine"></div><div class="verdict-dme" id="verdictDme">Análise Galandinho</div><div class="verdict-cta" id="verdictCta">segue pra não perder nenhuma análise</div><div class="replay-div" id="replayBtn" onclick="replay()">↺ Repetir</div></div></div>
         <div class="progress-bar" id="progressBar"></div>
       </div>
@@ -422,7 +425,7 @@
       <div class="side-panel panel-right" id="panelRightFS"><div class="panel-title">Funções</div><div id="panelFuncoesDisplayFS"></div></div>
       <div class="stats-section" id="statsSectionFS" style="display:none"><div class="sec-title">Pontos Fracos</div><div id="statsDisplayFS"></div><div class="sdivider"></div><div class="funcoes-sec" id="funcoesSectFS"><div class="sec-title">Funções</div><div id="funcoesDisplayFS"></div></div></div>
       <div class="act-screen act-preco" id="actPrecoFS"><div class="act-screen-bg"></div><div class="act-screen-content"><div class="scr-label">Preço da carta</div><div class="scr-val" id="aPrecoClassFS">Caro</div><div class="scr-sub" id="aPrecoValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPrecoBarFS"></div></div></div></div>
-      <div class="act-screen act-aval" id="actAvalFS"><div class="act-screen-bg"></div><div class="aval-split"><div class="aval-half aval-half-carta"><div class="scr-label">Carta</div><div class="scr-val" id="aAvalValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aAvalBarFS"></div></div></div><div class="aval-divider"></div><div class="aval-half aval-half-play"><div class="scr-label">Playstyles</div><div class="scr-val" id="aPlayValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPlayBarFS"></div></div></div></div></div>
+      <div class="act-screen act-aval" id="actAvalFS"><div class="act-screen-bg"></div><div class="aval-split"><div class="aval-half aval-half-carta"><div class="scr-label">Avaliação da Carta</div><div class="scr-val" id="aAvalValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aAvalBarFS"></div></div></div><div class="aval-divider"></div><div class="aval-half aval-half-play"><div class="scr-label">Avaliação de Playstyles</div><div class="scr-val" id="aPlayValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPlayBarFS"></div></div></div></div></div>
       <div class="act-verdict" id="actVerdictFS"><div class="act-verdict-bg"></div><div class="corner tl" id="cTLFS"></div><div class="corner tr" id="cTRFS"></div><div class="corner bl" id="cBLFS"></div><div class="corner br" id="cBRFS"></div><div class="verdict-content"><div class="verdict-eyebrow" id="verdictEyebrowFS">Veredito DME</div><div class="verdict-stamp" id="verdictStampFS"><div class="verdict-stamp-inner" id="verdictStampInnerFS"><div class="verdict-stamp-word" id="verdictStampWordFS">—</div></div></div><div class="verdict-line" id="verdictLineFS"></div><div class="verdict-dme" id="verdictDmeFS">Análise Galandinho</div><div class="verdict-cta" id="verdictCtaFS">segue pra não perder nenhuma análise</div><div class="replay-div" id="replayBtnFS" onclick="replayFS()">↺ Repetir</div></div></div>
       <div class="progress-bar" id="progressBarFS"></div>
     </div>
@@ -483,7 +486,7 @@ function runAnim(sfx,pc,ac,ps){
   setTimeout(()=>{aIn('panelLeft'+sfx,0);aIn('panelRight'+sfx,200);},3200);
   aIn(fsId(sfx),5500);
   setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actPreco'+sfx,0);setTimeout(()=>{const b=g('aPrecoBar'+sfx);if(b){b.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';b.style.width=pc.bar;}},200);});},7200);
-  setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actAval'+sfx,0);setTimeout(()=>{const b=g('aAvalBar'+sfx);if(b){b.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';b.style.width=ac.bar;}const pb=g('aPlayBar'+sfx);if(pb){pb.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';pb.style.width=ps.bar;}},200);});},11000);
+  setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actAval'+sfx,0);setTimeout(()=>{const b=g('aAvalBar'+sfx);if(b){b.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';b.style.width=ac.bar;}const pb=g('aPlayBar'+sfx);if(pb){pb.style.transition='width 1.2s 2s cubic-bezier(0.4,0,0.2,1)';pb.style.width=ps.bar;}},200);});},11000);
   if(sv){setTimeout(()=>{mF(sfx,3,100,()=>{aIn('actVerdict'+sfx,0);aIn('cTL'+sfx,200);aIn('cTR'+sfx,250);aIn('cBL'+sfx,300);aIn('cBR'+sfx,350);aIn('verdictEyebrow'+sfx,300);aIn('verdictStamp'+sfx,500);aIn('verdictLine'+sfx,500);aIn('verdictDme'+sfx,500);aIn('replayBtn'+sfx,500);aIn('verdictCta'+sfx,2000);});},15000);}
   else{aIn('replayBtn'+sfx,14000);}
 }
