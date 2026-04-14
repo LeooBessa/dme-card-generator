@@ -243,39 +243,39 @@
   }
   .act-preco.in::before, .act-preco.in::after { animation-play-state: running; }
 
-  /* --- Aval: rising particle grid + radial glow pulse --- */
-  @keyframes particleRise {
-    0%   { background-position: center 100%; }
-    100% { background-position: center -120px; }
+  /* --- Aval: radial burst expanding from center of each half --- */
+  @keyframes burstExpand {
+    0%   { transform: translate(-50%,-50%) scale(0.05); opacity: 0.8; }
+    60%  { opacity: 0.4; }
+    100% { transform: translate(-50%,-50%) scale(2.2); opacity: 0; }
   }
   .act-aval::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, rgba(168,85,247,0.4) 1.5px, transparent 1.5px);
-    background-size: 26px 26px;
+    left: 50%; top: 25%;
+    width: 70%; aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(168,85,247,0.35) 25%, rgba(168,85,247,0.1) 55%, transparent 70%);
     pointer-events: none;
     z-index: 1;
-    animation: particleRise 3.5s linear infinite;
+    transform: translate(-50%,-50%) scale(0.05);
+    animation: burstExpand 2.4s ease-out infinite;
     animation-play-state: paused;
   }
   .act-aval::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 50% 25%, rgba(168,85,247,0.22) 0%, transparent 45%),
-      radial-gradient(circle at 50% 75%, rgba(168,85,247,0.22) 0%, transparent 45%);
+    left: 50%; top: 75%;
+    width: 70%; aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(168,85,247,0.35) 25%, rgba(168,85,247,0.1) 55%, transparent 70%);
     pointer-events: none;
     z-index: 1;
-    animation: glowPulse 2.8s ease-in-out infinite;
+    transform: translate(-50%,-50%) scale(0.05);
+    animation: burstExpand 2.4s ease-out infinite;
+    animation-delay: -1.2s;
     animation-play-state: paused;
   }
-  @keyframes glowPulse {
-    0%, 100% { opacity: 0.6; }
-    50%       { opacity: 1; }
-  }
   .act-aval.in::before, .act-aval.in::after { animation-play-state: running; }
+  .aval-half { position: relative; overflow: hidden; }
 
   /* --- Veredito: expanding ring pulses --- */
   @keyframes ringOut {
