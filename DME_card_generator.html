@@ -316,6 +316,18 @@
     animation: gridFlicker 3s ease-in-out infinite;
   }
   .act-verdict.in::before, .act-verdict.in::after { animation-play-state: running; }
+
+  /* --- Hook screen --- */
+  .act-hook { z-index: 80; }
+  .hook-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px 24px; gap: 14px; }
+  .hook-card-img { width: 50%; border-radius: 6px; filter: drop-shadow(0 0 24px rgba(168,85,247,0.8)); opacity: 0; transform: translateY(-14px) scale(0.9); transition: opacity 0.3s, transform 0.4s cubic-bezier(0.34,1.3,0.64,1); }
+  .act-hook.in .hook-card-img { opacity: 1; transform: translateY(0) scale(1); }
+  .hook-question { font-family: 'Bebas Neue', sans-serif; font-size: clamp(42px, 17vw, 64px); color: #fff; letter-spacing: 5px; line-height: 1; text-align: center; text-shadow: 0 0 28px rgba(168,85,247,0.9), 0 0 56px rgba(168,85,247,0.4); opacity: 0; transform: scale(0.5); transition: opacity 0.35s 0.1s, transform 0.45s 0.1s cubic-bezier(0.34,1.4,0.64,1); }
+  .act-hook.in .hook-question { opacity: 1; transform: scale(1); }
+
+  /* --- Record button --- */
+  .record-btn { display: flex; align-items: center; justify-content: center; flex: 1; padding: 12px; background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.5); border-radius: 6px; color: #fca5a5; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; user-select: none; white-space: nowrap; }
+  .record-btn:hover { background: rgba(248,113,113,0.22); }
 </style>
 </head>
 <body>
@@ -395,13 +407,15 @@
         <div class="act-screen act-preco" id="actPreco"><div class="act-screen-bg"></div><div class="act-screen-content"><div class="scr-label">Preço da carta</div><div class="scr-val" id="aPrecoClass">Caro</div><div class="scr-sub" id="aPrecoVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPrecoBar"></div></div></div></div>
         <div class="act-screen act-aval" id="actAval"><div class="act-screen-bg"></div><div class="aval-split"><div class="aval-half aval-half-carta"><div class="scr-label">Avaliação da Carta</div><div class="scr-val" id="aAvalVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aAvalBar"></div></div></div><div class="aval-divider"></div><div class="aval-half aval-half-play"><div class="scr-label">Avaliação de Playstyles</div><div class="scr-val" id="aPlayVal">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPlayBar"></div></div></div></div></div>
         <div class="act-verdict" id="actVerdict"><div class="act-verdict-bg"></div><div class="corner tl" id="cTL"></div><div class="corner tr" id="cTR"></div><div class="corner bl" id="cBL"></div><div class="corner br" id="cBR"></div><div class="verdict-content"><div class="verdict-eyebrow" id="verdictEyebrow">Veredito DME</div><div class="verdict-stamp" id="verdictStamp"><div class="verdict-stamp-inner" id="verdictStampInner"><div class="verdict-stamp-word" id="verdictStampWord">—</div></div></div><div class="verdict-line" id="verdictLine"></div><div class="verdict-dme" id="verdictDme">Análise Galandinho</div><div class="verdict-cta" id="verdictCta">segue pra não perder nenhuma análise</div><div class="replay-div" id="replayBtn" onclick="replay()">↺ Repetir</div></div></div>
+        <div class="act-screen act-hook" id="actHook"><div class="act-screen-bg"></div><div class="hook-inner"><img class="hook-card-img" id="hookCardImg" src="" alt=""/><div class="hook-question">VALE A PENA?</div></div></div>
         <div class="progress-bar" id="progressBar"></div>
       </div>
     </div>
   </div>
   <div class="action-row">
     <div class="play-btn" onclick="playAnimation()">▶ Gerar Animação</div>
-    <div class="fullscreen-btn" onclick="openFullscreen()">⛶ Abrir Tela Cheia para Gravar</div>
+    <div class="fullscreen-btn" onclick="openFullscreen()">⛶ Tela Cheia</div>
+    <div class="record-btn" onclick="gravarEBaixar()">⏺ Gravar e Baixar</div>
   </div>
 </div>
 
@@ -430,6 +444,7 @@
       <div class="act-screen act-preco" id="actPrecoFS"><div class="act-screen-bg"></div><div class="act-screen-content"><div class="scr-label">Preço da carta</div><div class="scr-val" id="aPrecoClassFS">Caro</div><div class="scr-sub" id="aPrecoValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPrecoBarFS"></div></div></div></div>
       <div class="act-screen act-aval" id="actAvalFS"><div class="act-screen-bg"></div><div class="aval-split"><div class="aval-half aval-half-carta"><div class="scr-label">Avaliação da Carta</div><div class="scr-val" id="aAvalValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aAvalBarFS"></div></div></div><div class="aval-divider"></div><div class="aval-half aval-half-play"><div class="scr-label">Avaliação de Playstyles</div><div class="scr-val" id="aPlayValFS">—</div><div class="scr-bar-wrap"><div class="scr-bar" id="aPlayBarFS"></div></div></div></div></div>
       <div class="act-verdict" id="actVerdictFS"><div class="act-verdict-bg"></div><div class="corner tl" id="cTLFS"></div><div class="corner tr" id="cTRFS"></div><div class="corner bl" id="cBLFS"></div><div class="corner br" id="cBRFS"></div><div class="verdict-content"><div class="verdict-eyebrow" id="verdictEyebrowFS">Veredito DME</div><div class="verdict-stamp" id="verdictStampFS"><div class="verdict-stamp-inner" id="verdictStampInnerFS"><div class="verdict-stamp-word" id="verdictStampWordFS">—</div></div></div><div class="verdict-line" id="verdictLineFS"></div><div class="verdict-dme" id="verdictDmeFS">Análise Galandinho</div><div class="verdict-cta" id="verdictCtaFS">segue pra não perder nenhuma análise</div><div class="replay-div" id="replayBtnFS" onclick="replayFS()">↺ Repetir</div></div></div>
+      <div class="act-screen act-hook" id="actHookFS"><div class="act-screen-bg"></div><div class="hook-inner"><img class="hook-card-img" id="hookCardImgFS" src="" alt=""/><div class="hook-question">VALE A PENA?</div></div></div>
       <div class="progress-bar" id="progressBarFS"></div>
     </div>
   </div>
@@ -463,11 +478,12 @@ function flash(sfx,cb){const f=g('flash'+sfx);f.style.transition='none';f.style.
 function mF(sfx,n,iv,cb){let i=0;function go(){flash(sfx,()=>{i++;if(i<n)setTimeout(go,iv);else if(cb)setTimeout(cb,80);});}go();}
 function aIn(id,d){setTimeout(()=>{const el=g(id);if(el)el.classList.add('in');},d);}
 function makeStars(val,id){const el=g(id);if(!el)return;el.innerHTML='';for(let i=1;i<=5;i++){const s=document.createElement('span');s.className='cstar'+(i<=val?' ':' empty');s.textContent='★';el.appendChild(s);}}
-function rAll(sfx){['dmeTag','logoTag','cardWrap','cardOvr','nameStrip','cardAttrLeft','cardAttrRight','panelLeft','panelRight','statsSection','funcoesSec','actPreco','actAval','actVerdict','cTL','cTR','cBL','cBR','verdictEyebrow','verdictStamp','verdictLine','verdictDme','verdictCta','replayBtn'].forEach(id=>{const el=g(id+sfx);if(el)el.classList.remove('in');});['aPrecoBar','aAvalBar','aPlayBar'].forEach(id=>{const el=g(id+sfx);if(el)el.style.width='0%';});}
+function rAll(sfx){['dmeTag','logoTag','cardWrap','cardOvr','nameStrip','cardAttrLeft','cardAttrRight','panelLeft','panelRight','statsSection','funcoesSec','actHook','actPreco','actAval','actVerdict','cTL','cTR','cBL','cBR','verdictEyebrow','verdictStamp','verdictLine','verdictDme','verdictCta','replayBtn'].forEach(id=>{const el=g(id+sfx);if(el)el.classList.remove('in');});['aPrecoBar','aAvalBar','aPlayBar'].forEach(id=>{const el=g(id+sfx);if(el)el.style.width='0%';});}
 function fsId(sfx){return sfx===''?'funcoesSec':'funcoesSect'+sfx;}
 function prepData(sfx){
   const pc=PC[g('fPrecoClass').value]||PC.caro,ac=AC[g('fAval').value]||AC.bom,ps=PS[g('fPlay').value]||PS.interessante;
   const fv=parseInt(g('fFintas').value)||0,pv=parseInt(g('fPerna').value)||0;
+  const hImg=g('hookCardImg'+sfx);if(hImg){const ci=g('cardImg'+sfx);hImg.src=(ci&&ci.src&&ci.src.length>10)?ci.src:'';}
   makeStars(fv,'fintasStars'+sfx);makeStars(pv,'pernaStars'+sfx);
   const avalEl=g('actAval'+sfx);if(avalEl){avalEl.style.setProperty('--aval-bright',AVAL_COLORS[g('fAval').value]||'#c084fc');avalEl.style.setProperty('--play-bright',PLAY_COLORS[g('fPlay').value]||'#c084fc');}
   const precoEl=g('actPreco'+sfx);if(precoEl)precoEl.style.setProperty('--preco-bright',PRECO_COLORS[g('fPrecoClass').value]||'#c084fc');
@@ -484,19 +500,61 @@ function prepData(sfx){
   return {pc,ac,ps};
 }
 function runAnim(sfx,pc,ac,ps){
-  const TD=sv?20000:16000;sP(sfx,TD);flash(sfx);
-  aIn('dmeTag'+sfx,300);aIn('logoTag'+sfx,300);aIn('cardWrap'+sfx,600);aIn('cardAttrLeft'+sfx,2200);aIn('cardAttrRight'+sfx,2200);
-  setTimeout(()=>{aIn('panelLeft'+sfx,0);aIn('panelRight'+sfx,200);},3200);
-  aIn(fsId(sfx),5500);
-  setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actPreco'+sfx,0);setTimeout(()=>{const b=g('aPrecoBar'+sfx);if(b){b.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';b.style.width=pc.bar;}},200);});},7200);
-  setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actAval'+sfx,0);setTimeout(()=>{const b=g('aAvalBar'+sfx);if(b){b.style.transition='width 1.2s 1s cubic-bezier(0.4,0,0.2,1)';b.style.width=ac.bar;}const pb=g('aPlayBar'+sfx);if(pb){pb.style.transition='width 1.2s 2s cubic-bezier(0.4,0,0.2,1)';pb.style.width=ps.bar;}},200);});},11000);
-  if(sv){setTimeout(()=>{mF(sfx,3,100,()=>{aIn('actVerdict'+sfx,0);aIn('cTL'+sfx,200);aIn('cTR'+sfx,250);aIn('cBL'+sfx,300);aIn('cBR'+sfx,350);aIn('verdictEyebrow'+sfx,300);aIn('verdictStamp'+sfx,500);aIn('verdictLine'+sfx,500);aIn('verdictDme'+sfx,500);aIn('replayBtn'+sfx,500);aIn('verdictCta'+sfx,2000);});},15000);}
-  else{aIn('replayBtn'+sfx,14000);}
+  const TD=sv?12000:10000;sP(sfx,TD);flash(sfx);
+  // Hook: 0–0.8s (rápido)
+  aIn('actHook'+sfx,0);
+  setTimeout(()=>{const el=g('actHook'+sfx);if(el)el.classList.remove('in');},800);
+  // Card reveal: 0.8–2.5s
+  aIn('dmeTag'+sfx,800);aIn('logoTag'+sfx,800);aIn('cardWrap'+sfx,1100);
+  aIn('cardAttrLeft'+sfx,2000);aIn('cardAttrRight'+sfx,2000);
+  setTimeout(()=>{aIn('panelLeft'+sfx,0);aIn('panelRight'+sfx,200);},2400);
+  // Preço: ~5.5s (painéis ficam ~3s visíveis)
+  setTimeout(()=>{mF(sfx,1,100,()=>{aIn('actPreco'+sfx,0);setTimeout(()=>{const b=g('aPrecoBar'+sfx);if(b){b.style.transition='width 1s 0.3s cubic-bezier(0.4,0,0.2,1)';b.style.width=pc.bar;}},100);});},5500);
+  // Aval: ~7.3s
+  setTimeout(()=>{mF(sfx,1,100,()=>{aIn('actAval'+sfx,0);setTimeout(()=>{const b=g('aAvalBar'+sfx);if(b){b.style.transition='width 0.8s 0.2s cubic-bezier(0.4,0,0.2,1)';b.style.width=ac.bar;}const pb=g('aPlayBar'+sfx);if(pb){pb.style.transition='width 0.8s 1s cubic-bezier(0.4,0,0.2,1)';pb.style.width=ps.bar;}},100);});},7300);
+  // Veredito: ~9.3s (se selecionado)
+  if(sv){setTimeout(()=>{mF(sfx,2,100,()=>{aIn('actVerdict'+sfx,0);aIn('cTL'+sfx,200);aIn('cTR'+sfx,250);aIn('cBL'+sfx,300);aIn('cBR'+sfx,350);aIn('verdictEyebrow'+sfx,300);aIn('verdictStamp'+sfx,500);aIn('verdictLine'+sfx,500);aIn('verdictDme'+sfx,500);aIn('replayBtn'+sfx,500);aIn('verdictCta'+sfx,1800);});},9300);}
+  else{aIn('replayBtn'+sfx,9800);}
 }
 function playAnimation(){rAll('');const {pc,ac,ps}=prepData('');setTimeout(()=>runAnim('',pc,ac,ps),100);}
 function replay(){rAll('');const {pc,ac,ps}=prepData('');setTimeout(()=>runAnim('',pc,ac,ps),100);}
 let _fsCloseTimer=null;
-function openFullscreen(){rAll('FS');const {pc,ac,ps}=prepData('FS');const btn=document.getElementById('fsClose');btn.style.display='none';if(_fsCloseTimer)clearTimeout(_fsCloseTimer);const wrap=document.querySelector('.fs-scene-wrap');const sw=window.innerWidth,sh=window.innerHeight;if(sw/sh>9/16){wrap.style.height=sh+'px';wrap.style.width=(sh*9/16)+'px';}else{wrap.style.width=sw+'px';wrap.style.height=(sw*16/9)+'px';}const intro=document.getElementById('fsIntro');const introCard=document.getElementById('introCardImg');introCard.src=document.getElementById('cardImgFS').src;document.getElementById('fsOverlay').classList.add('open');setTimeout(()=>intro.classList.add('in'),50);setTimeout(()=>intro.classList.remove('in'),2000);setTimeout(()=>runAnim('FS',pc,ac,ps),2500);_fsCloseTimer=setTimeout(()=>{btn.style.display='';},sv?24500:22500);}
+function openFullscreen(){rAll('FS');const {pc,ac,ps}=prepData('FS');const btn=document.getElementById('fsClose');btn.style.display='none';if(_fsCloseTimer)clearTimeout(_fsCloseTimer);const wrap=document.querySelector('.fs-scene-wrap');const sw=window.innerWidth,sh=window.innerHeight;if(sw/sh>9/16){wrap.style.height=sh+'px';wrap.style.width=(sh*9/16)+'px';}else{wrap.style.width=sw+'px';wrap.style.height=(sw*16/9)+'px';}const intro=document.getElementById('fsIntro');const introCard=document.getElementById('introCardImg');introCard.src=document.getElementById('cardImgFS').src;document.getElementById('fsOverlay').classList.add('open');setTimeout(()=>intro.classList.add('in'),50);setTimeout(()=>intro.classList.remove('in'),2000);setTimeout(()=>runAnim('FS',pc,ac,ps),2500);_fsCloseTimer=setTimeout(()=>{btn.style.display='';},2500+(sv?12000:10000)+1500);}
+let _recorder=null,_chunks=[];
+async function gravarEBaixar(){
+  rAll('FS');const{pc,ac,ps}=prepData('FS');
+  let stream=null;
+  try{stream=await navigator.mediaDevices.getDisplayMedia({video:{frameRate:{ideal:30}},audio:false});}
+  catch(e){openFullscreen();return;}
+  const btn=document.getElementById('fsClose');btn.style.display='none';
+  if(_fsCloseTimer)clearTimeout(_fsCloseTimer);
+  const wrap=document.querySelector('.fs-scene-wrap');
+  const sw=window.innerWidth,sh=window.innerHeight;
+  if(sw/sh>9/16){wrap.style.height=sh+'px';wrap.style.width=(sh*9/16)+'px';}
+  else{wrap.style.width=sw+'px';wrap.style.height=(sw*16/9)+'px';}
+  const intro=document.getElementById('fsIntro');
+  document.getElementById('introCardImg').src=document.getElementById('cardImgFS').src;
+  document.getElementById('fsOverlay').classList.add('open');
+  setTimeout(()=>intro.classList.add('in'),50);
+  setTimeout(()=>intro.classList.remove('in'),2000);
+  const animDur=sv?12000:10000;
+  setTimeout(()=>runAnim('FS',pc,ac,ps),2500);
+  _fsCloseTimer=setTimeout(()=>{btn.style.display='';},2500+animDur+1500);
+  _chunks=[];
+  const mime=['video/webm;codecs=vp9','video/webm'].find(t=>{try{return MediaRecorder.isTypeSupported(t);}catch(e){return false;}})||'video/webm';
+  _recorder=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:8000000});
+  _recorder.ondataavailable=e=>{if(e.data.size>0)_chunks.push(e.data);};
+  _recorder.onstop=()=>{
+    stream.getTracks().forEach(t=>t.stop());
+    const blob=new Blob(_chunks,{type:'video/webm'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download='dme-review.webm';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+  _recorder.start(500);
+  setTimeout(()=>{if(_recorder&&_recorder.state==='recording')_recorder.stop();},2500+animDur+1000);
+}
 function closeFullscreen(){document.getElementById('fsOverlay').classList.remove('open');}
 function replayFS(){rAll('FS');const {pc,ac,ps}=prepData('FS');setTimeout(()=>runAnim('FS',pc,ac,ps),100);}
 updateRoles();
